@@ -1,30 +1,11 @@
-window.onload = () => {
-	setInterval(() => tick(), 10);
+var sound = new Howl({
+	src: ["ticktock.mp3"],
+	autoplay: true,
+	loop: true,
+	volume: 0.5,
+});
 
-	// var url =
-	// 	"https://cdn.sndup.net/7bn4/ticktock.mp3?token=tk2jt6a1yLoC5dvYV5FBLyo05byX4L_W1uMoxARRyoc&expires=1605560466";
-	// window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	// var context = new AudioContext();
-	// var source = context.createBufferSource();
-	// source.connect(context.destination);
-	// var request = new XMLHttpRequest();
-	// request.open("GET", url, true);
-	// request.responseType = "arraybuffer";
-	// request.onload = function () {
-	// 	context.decodeAudioData(
-	// 		request.response,
-	// 		function (response) {
-	// 			source.buffer = response;
-	// 			source.start(0);
-	// 			source.loop = true;
-	// 		},
-	// 		function () {
-	// 			console.error("The request failed.");
-	// 		}
-	// 	);
-	// };
-	// request.send();
-};
+sound.play();
 
 const tick = () => {
 	let now = new Date().getTime();
@@ -44,7 +25,7 @@ const tick = () => {
 		seconds
 	);
 
-	document.title = format(days, hours, minutes, seconds);
+	document.title = format(days, hours, minutes, seconds) + " - Memento mori.";
 };
 
 const format = (days, hours, minutes, seconds) => {
@@ -58,3 +39,7 @@ const format = (days, hours, minutes, seconds) => {
 		(seconds < 10 ? "0" + seconds : seconds)
 	);
 };
+
+tick();
+
+setInterval(() => tick(), 1000);
